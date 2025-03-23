@@ -15,7 +15,7 @@ const EmployeeDashboard = () => {
   const fetchEmployeeTasks = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:5000/api/tasks/employee-tasks", {
+      const response = await axios.get("https://employeetask.onrender.com/api/tasks/employee-tasks", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -33,7 +33,7 @@ const EmployeeDashboard = () => {
   const completeTask = async (taskId) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.put(`http://localhost:5000/api/tasks/complete-task/${taskId}`, {}, {
+      await axios.put(`https://employeetask.onrender.com/api/tasks/complete-task/${taskId}`, {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

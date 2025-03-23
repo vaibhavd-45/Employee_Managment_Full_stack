@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode"; // Install with: npm install jwt-decode
+import { jwtDecode } from "jwt-decode";
 
 const CreateEmployee = () => {
   const navigate = useNavigate();
@@ -10,8 +10,7 @@ const CreateEmployee = () => {
   const [loading, setLoading] = useState(false);
   const [employee, setEmployee] = useState({
     name: "",
-    dateOfJoining: new Date().toISOString().split("T")[0], // FIXED: Renamed `joinedDate` to `dateOfJoining`
-    email: "",
+    dateOfJoining: new Date().toISOString().split("T")[0],
     department: "",
     password: "",
   });
@@ -23,14 +22,14 @@ const CreateEmployee = () => {
         const decoded = jwtDecode(storedToken);
         if (!decoded.id) throw new Error("Invalid token");
         setToken(storedToken);
-        setAdminId(decoded.id); // Store admin ID
+        setAdminId(decoded.id); 
       } catch (error) {
         console.error("Token error:", error);
         localStorage.removeItem("token");
-        navigate("/"); // Redirect to login if token is invalid
+        navigate("/"); 
       }
     } else {
-      navigate("/"); // Redirect if no token
+      navigate("/"); 
     }
   }, [navigate]);
 
@@ -45,7 +44,7 @@ const CreateEmployee = () => {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/admin/create-employee",
+        "https://employeetask.onrender.com/api/admin/create-employee",
         { ...employee, admin: adminId }, // FIXED: Renamed `joinedDate` to `dateOfJoining`
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -11,7 +11,7 @@ const EmployeeProfile = () => {
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:5000/api/employee/profile", {
+        const response = await axios.get("https://employeetask.onrender.com/api/employee/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setEmployee(response.data);
@@ -52,10 +52,9 @@ const EmployeeProfile = () => {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.post("http://localhost:5000/api/employee/upload-image", formData, {
+      const response = await axios.post("https://employeetask.onrender.com/api/employee/upload-image", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-        //   "Content-Type": "multipart/form-data",
         },
       });
 

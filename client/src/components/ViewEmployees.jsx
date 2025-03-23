@@ -15,7 +15,7 @@ const ViewEmployees = () => {
           return;
         }
 
-        const { data } = await axios.get("http://localhost:5000/api/admin/employees", {
+        const { data } = await axios.get("https://employeetask.onrender.com/api/admin/employees", {
           headers: { Authorization: `Bearer ${token}` },
         });
 

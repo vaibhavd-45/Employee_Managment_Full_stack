@@ -22,7 +22,7 @@ const Signup = () => {
     setError("");
 
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/admin/signup", {
+      const response = await axios.post("https://employeetask.onrender.com/api/auth/admin/signup", {
         name,
         email,
         password,
@@ -32,7 +32,7 @@ const Signup = () => {
       console.log("Signup successful:", response.data);
       alert("Admin account created successfully!");
 
-      navigate("/"); // Redirect to login page
+      navigate("/");
     } catch (err) {
       if (err.response && err.response.data.message) {
         setError(err.response.data.message);

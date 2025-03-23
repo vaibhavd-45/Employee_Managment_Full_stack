@@ -24,7 +24,7 @@ const AssignTask = () => {
     const fetchEmployees = async () => {
       try {
         const token = localStorage.getItem("token");
-        const { data } = await axios.get("http://localhost:5000/api/admin/employees", {
+        const { data } = await axios.get("https://employeetask.onrender.com/api/admin/employees", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setEmployees(data);
@@ -47,7 +47,7 @@ const AssignTask = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      const { data } = await axios.post("http://localhost:5000/api/tasks/assign-task", task, {
+      const { data } = await axios.post("https://employeetask.onrender.com/api/tasks/assign-task", task, {
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
       });
 

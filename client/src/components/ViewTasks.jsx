@@ -10,7 +10,7 @@ const ViewTasks = () => {
     const fetchTasks = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:5000/api/tasks/admin-tasks", {
+        const response = await axios.get("https://employeetask.onrender.com/api/tasks/admin-tasks", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setTasks(response.data);
