@@ -64,4 +64,38 @@ router.get("/employees", protect, adminOnly, async (req, res) => {
     res.status(500).json({ message: "Error fetching employees", error: error.message });
   }
 });
+
+// Delete Employee
+router.delete("/employees/:id", protect, adminOnly, async (req, res) => {
+  try {
+    const employeeId = req.params.id;
+
+    // Check if employee exists and belongs to this admin
+    const employee = await User.findOne({ 
+      _id: employeeId, 
+      role: "employee", 
+      admin: req.user._id 
+    });
+
+    if (!employee) {
+      return res.status(404).json({ 
+        message: "Employee not found or you don't have permission to delete this employee" 
+      });
+    }
+
+    // Delete the employee
+    await User.findByIdAndDelete(employeeId);
+
+    res.status(200).json({ 
+      message: "Employee deleted successfully", 
+      employeeId 
+    });
+  } catch (error) {
+    console.error("Error deleting employee:", error);
+    res.status(500).json({ 
+      message: "Error deleting employee", 
+      error: error.message 
+    });
+  }
+});
 module.exports = router;

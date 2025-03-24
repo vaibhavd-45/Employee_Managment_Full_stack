@@ -12,7 +12,7 @@ const User = require("./models/User");
 // Multer Setup
 const upload = multer({ storage: multer.memoryStorage() });
 const app = express();
-connectDB();
+
 
 app.use(express.json());
 app.use(cors());
@@ -23,5 +23,6 @@ app.use("/api/employee", require("./routes/employeeRoutes"));
 app.use("/api/tasks",require("./routes/taskRoutes"));
 
 
+connectDB();
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

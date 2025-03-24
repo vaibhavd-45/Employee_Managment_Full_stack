@@ -13,6 +13,7 @@ const CreateEmployee = () => {
     dateOfJoining: new Date().toISOString().split("T")[0],
     department: "",
     password: "",
+    email: "",
   });
 
   useEffect(() => {
@@ -38,20 +39,51 @@ const CreateEmployee = () => {
     setEmployee({ ...employee, [name]: value });
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+
+  //   try {
+  //     await axios.post(
+  //       "https://employeetask.onrender.com/api/admin/create-employee",
+  //       { ...employee, admin: adminId },
+  //       { headers: { Authorization: `Bearer ${token}` } }
+  //     );
+
+  //     navigate("/admin-dashboard");
+  //   } catch (error) {
+  //     console.error("Error creating employee:", error.response?.data?.message || error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
+    
     try {
+      // First create the employee
       await axios.post(
         "https://employeetask.onrender.com/api/admin/create-employee",
-        { ...employee, admin: adminId }, // FIXED: Renamed `joinedDate` to `dateOfJoining`
+        { ...employee, admin: adminId },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-
+  
+      // Then send the password email
+      await axios.post(
+        "http://localhost:5000/api/email/test",
+        { 
+          recipientEmail: employee.email, 
+          password: employee.password 
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      
+      // Navigate to dashboard after both operations complete successfully
       navigate("/admin-dashboard");
     } catch (error) {
-      console.error("Error creating employee:", error.response?.data?.message || error.message);
+      console.error("Error:", error.response?.data?.message || error.message);
     } finally {
       setLoading(false);
     }
@@ -66,12 +98,12 @@ const CreateEmployee = () => {
           <input type="text" name="name" value={employee.name} onChange={handleChange} className="mt-1 block w-full p-2 border rounded-md" required />
         </div>
         <div>
-          <label className="block text-sm font-medium">Date of Joining</label>
-          <input type="date" name="dateOfJoining" value={employee.dateOfJoining} onChange={handleChange} className="mt-1 block w-full p-2 border rounded-md" required />
-        </div>
-        <div>
           <label className="block text-sm font-medium">Email</label>
           <input type="email" name="email" value={employee.email} onChange={handleChange} className="mt-1 block w-full p-2 border rounded-md" required />
+        </div>
+        <div>
+          <label className="block text-sm font-medium">Password</label>
+          <input type="password" name="password" value={employee.password} onChange={handleChange} className="mt-1 block w-full p-2 border rounded-md" required />
         </div>
         <div>
           <label className="block text-sm font-medium">Department</label>
@@ -85,8 +117,8 @@ const CreateEmployee = () => {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium">Password</label>
-          <input type="password" name="password" value={employee.password} onChange={handleChange} className="mt-1 block w-full p-2 border rounded-md" required />
+          <label className="block text-sm font-medium">Date of Joining</label>
+          <input type="date" name="dateOfJoining" value={employee.dateOfJoining} onChange={handleChange} className="mt-1 block w-full p-2 border rounded-md" required />
         </div>
         <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded-md" disabled={loading}>
           {loading ? "Creating..." : "Submit"}

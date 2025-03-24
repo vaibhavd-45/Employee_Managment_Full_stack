@@ -11,6 +11,25 @@ EmployeeTasker is a comprehensive employee management system that helps organiza
 - **Dashboard**: Visual representation of employee performance and task status
 - **Real-time Updates**: Get notified about task assignments and updates
 
+## Basic Working
+
+1. **Admin Signup & Login**
+   - A user can sign up as an Admin.
+   - After signing up, the Admin can log in to the system.
+
+2. **Employee Registration & Management**
+   - The Admin can add employees by registering them in the system.
+   - Each employee is provided with login credentials (email and password) by the Admin.
+
+3. **Employee Login**
+   - Employees can log in using the credentials provided by the Admin.
+   - After logging in, employees can view their tasks and profile information.
+
+4. **Task Management**
+   - The Admin can create and assign tasks to employees.
+   - Employees can update task status upon completion.
+   - Tasks can be tracked and managed through the dashboard.
+
 ## Tech Stack
 
 ### Frontend
@@ -31,42 +50,42 @@ EmployeeTasker is a comprehensive employee management system that helps organiza
 ## Installation
 
 1. Clone the repository
-```bash
-git clone https://github.com/Chirag-Chhugani/EmployeeTasker.git
-cd EmployeeTasker
-```
+   ```bash
+   git clone https://github.com/Chirag-Chhugani/EmployeeTasker.git
+   cd EmployeeTasker
+   ```
 
 2. Install dependencies
-```bash
-# Install backend dependencies
-npm install
+   ```bash
+   # Install backend dependencies
+   npm install
 
-# Install frontend dependencies
-cd client
-npm install
-```
+   # Install frontend dependencies
+   cd client
+   npm install
+   ```
 
 3. Create a `.env` file in the root directory with the following variables:
-```
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
-CLOUDINARY_API_KEY=your_cloudinary_api_key
-CLOUDINARY_API_SECRET=your_cloudinary_api_secret
-```
+   ```
+   PORT=5000
+   MONGO_URI=your_mongodb_connection_string
+   JWT_SECRET=your_jwt_secret
+   CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+   CLOUDINARY_API_KEY=your_cloudinary_api_key
+   CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+   ```
 
 4. Run the application
-```bash
-# Run backend and frontend concurrently
-npm run dev
+   ```bash
+   # Run backend and frontend concurrently
+   npm run dev
 
-# Run backend only
-npm run server
+   # Run backend only
+   npm run server
 
-# Run frontend only
-npm run client
-```
+   # Run frontend only
+   npm run client
+   ```
 
 ## Demo Credentials
 
@@ -105,3 +124,4 @@ npm run client
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
