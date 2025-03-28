@@ -51,7 +51,7 @@ EmployeeTasker is a comprehensive employee management system that helps organiza
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/Chirag-Chhugani/EmployeeTasker.git
+   [git clone https://github.com/Chirag-Chhugani/EmployeeTasker.git](https://github.com/vaibhavd-45/Employee_Managment_Full_stack.git)
    cd EmployeeTasker
    ```
 
