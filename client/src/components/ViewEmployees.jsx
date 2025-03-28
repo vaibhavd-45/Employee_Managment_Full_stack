@@ -43,7 +43,6 @@ const ViewEmployees = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      // Remove the deleted employee from state
       setEmployees(employees.filter(employee => employee._id !== id));
     } catch (err) {
       setError(err.response?.data?.message || "Error deleting employee");
